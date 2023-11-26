@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { data } from './data';
+import Clothes from './Clothes';
 import './App.css';
+import Buttons from './Buttons';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const [clothes, setCothes]=useState(data)
+const chosenClothes=(searchTerm)=>{
+  const newClothes=data.filter(element=>element.searchTerm===searchTerm);
+  setCothes(newClothes);
 }
+
+ return(
+  <div>
+    <div className='cont'>
+      <h2 className='back'>Free Standart Shipping</h2>
+    </div>
+    <Buttons filteredClothes={chosenClothes}/>
+<Clothes itemsForSale={clothes}/>
+  </div>
+ )
+}
+
 
 export default App;
